@@ -1,0 +1,1 @@
+json.message "You have deleted the log for meeting #{@meeting.id}."
