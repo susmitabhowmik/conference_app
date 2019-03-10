@@ -1,7 +1,6 @@
 class Api::MeetingsController < ApplicationController
   def index
-    meetings = Meeting.all
-    @meetings = Meeting.where("id > 0").reverse_order
+    @meetings = Meeting.where(:remote => true)
     render 'index.json.jbuilder'
   end
 
