@@ -13,9 +13,11 @@ class Api::MeetingsController < ApplicationController
 
   def create
     @meeting = Meeting.new(
-      title: params[:input_title],
-      agenda: params[:input_agenda],
-      time: params[:input_time]
+      title: params[:title],
+      agenda: params[:agenda],
+      time: params[:time],
+      location: params[:location],
+      remote: params[:remote]
     )
     @meeting.save
     render 'show.json.jbuilder'
@@ -24,9 +26,11 @@ class Api::MeetingsController < ApplicationController
   def update
     the_id = params[:id]
     @meeting = Meeting.find_by id:the_id
-    @meeting.title = params[:input_title] || @meeting.title
-    @meeting.agenda = params[:input_agenda] || @meeting.agenda
-    @meeting.time = params[:input_time] || @meeting.time
+    @meeting.title = params[:title] || @meeting.title
+    @meeting.agenda = params[:agenda] || @meeting.agenda
+    @meeting.time = params[:time] || @meeting.time
+    @meeting.location = params[:location] || @meeting.location
+    @meeting.remote = params[:remote] || false
     @meeting.save
     render 'show.json.jbuilder'
   end
