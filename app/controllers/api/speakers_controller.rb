@@ -12,18 +12,22 @@ class Api::SpeakersController < ApplicationController
 
   def create
     @speaker = Speaker.create(
-      first_name: params[:input_first_name],
-      last_name: params[:input_last_name],
-      email: params[:input_email])
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      gender: params[:gender],
+      age: params[:age])
     render 'show.json.jbuilder'
   end
 
   def update
     the_id = params[:id]
     @speaker = Speaker.find_by id:the_id
-    @speaker.first_name = params[:input_first_name] || @speaker.first_name
-    @speaker.last_name = params[:input_last_name] || @speaker.last_name
-    @speaker.email = params[:input_email] || @speaker.email
+    @speaker.first_name = params[:first_name] || @speaker.first_name
+    @speaker.last_name = params[:last_name] || @speaker.last_name
+    @speaker.email = params[:email] || @speaker.email
+    @speaker.gender = params[:gender] || @speaker.gender
+    @speaker.age = params[:age] || @speaker.age
     @speaker.save
     render 'show.json.jbuilder'
   end
