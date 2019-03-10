@@ -17,7 +17,11 @@ class Api::SpeakersController < ApplicationController
       email: params[:email],
       gender: params[:gender],
       age: params[:age])
-    render 'show.json.jbuilder'
+    if @speaker.save
+      render 'show.json.jbuilder'
+    else
+      render 'errors.json.jbuilder'
+    end
   end
 
   def update
@@ -28,8 +32,11 @@ class Api::SpeakersController < ApplicationController
     @speaker.email = params[:email] || @speaker.email
     @speaker.gender = params[:gender] || @speaker.gender
     @speaker.age = params[:age] || @speaker.age
-    @speaker.save
-    render 'show.json.jbuilder'
+    if @speaker.save
+      render 'show.json.jbuilder'
+    else
+      render 'errors.json.jbuilder'
+    end
   end
 
   def destroy

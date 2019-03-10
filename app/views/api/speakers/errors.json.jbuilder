@@ -1,0 +1,1 @@
+json.errors @speaker.errors.full_messages
