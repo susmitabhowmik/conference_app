@@ -1,5 +1,8 @@
 class Api::SpeakersController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
+    p current_user
     @speakers = Speaker.order("age ASC")
     render 'index.json.jbuilder'
   end
