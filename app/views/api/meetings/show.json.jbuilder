@@ -3,4 +3,5 @@
   json.agenda @meeting.agenda
   json.time @meeting.time
   json.location @meeting.location
-  json.remote? @meeting.remote?
+  json.remote @meeting.remote
+  json.speaker_email @meeting.speaker.email
